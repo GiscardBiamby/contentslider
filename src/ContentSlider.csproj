@@ -127,15 +127,15 @@
     <Compile Include="Handlers\FeaturedItemGroupPartHandler.cs" />
     <Compile Include="Handlers\FeaturedItemPartHandler.cs" />
     <Compile Include="Migrations.cs" />
-    <Compile Include="Models\FeaturedItemSliderWidgetEditViewModel.cs" />
-    <Compile Include="Models\FeaturedItemEditViewModel.cs" />
+    <Compile Include="ViewModels\FeaturedItemSliderWidgetEditViewModel.cs" />
+    <Compile Include="ViewModels\FeaturedItemEditViewModel.cs" />
     <Compile Include="Models\FeaturedItemGroupPart.cs" />
     <Compile Include="Models\FeaturedItemGroupPartRecord.cs" />
     <Compile Include="Models\FeaturedItemPart.cs" />
     <Compile Include="Models\FeaturedItemPartRecord.cs" />
     <Compile Include="Models\FeaturedItemSliderWidgetPart.cs" />
     <Compile Include="Models\FeaturedItemSliderWidgetPartRecord.cs" />
-    <Compile Include="Models\FeaturedItemViewModel.cs" />
+    <Compile Include="ViewModels\FeaturedItemViewModel.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
   </ItemGroup>

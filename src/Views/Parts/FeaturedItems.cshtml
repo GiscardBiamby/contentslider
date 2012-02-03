@@ -6,7 +6,6 @@
 }
 
 @if (Model.FeaturedItems.Count > 0) {
-    <div id="@(Model.Group.Name)-buttons" class="showcase-nav-buttons" style="width:@(Model.Group.GroupWidth)px;"></div>
     <div id="@Model.Group.Name" class="showcase">
         @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems)
         {

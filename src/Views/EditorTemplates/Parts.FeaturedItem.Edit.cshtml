@@ -1,24 +1,64 @@
 ﻿@model ContentSlider.Models.FeaturedItemEditViewModel
 @using System.Linq;
+@using System.Linq.Expressions; 
+@using System.Web.Mvc;
+@using ContentSlider.Models;
+@using Orchard.ContentManagement;
+@using Orchard.Localization; 
 
 @{
     Script.Require("jQuery");
+    Script.Require("OrchardTinyMce");
+}
+@functions
+{
+    public HelperResult BlurbEditorFor<TModel, TProperty>(
+        HtmlHelper<TModel> html
+        , Expression<Func<TModel, TProperty>> propertyExpression
+        , LocalizedString displayName
+        , string addMediaPath
+        )
+            where TModel : class
+    {
+        return Helper_BlurbEditorFor(
+            html.LabelFor(propertyExpression, displayName)
+            , html.TextAreaFor(
+                propertyExpression
+                , 25, 40
+                , new Dictionary<string, object> {
+		            {"class", "html tinymce"}
+                    , {"data-mediapicker-uploadpath", addMediaPath}
+                    , {"data-mediapicker-title", "Insert/Update Media"}
+	            }
+            )
+            , html.ValidationMessageFor(propertyExpression)
+        );
+    }
+}
+@helper Helper_BlurbEditorFor(IHtmlString label, MvcHtmlString textbox, MvcHtmlString validationMessage)
+{
+    @label
+    @validationMessage
+    @textbox
 }
 
 <div>
     <fieldset>
         <label for="Headline">Headline:</label>
-        <input id="Headline" name="Headline" class="large text" type="text" value="@Model.FeaturedItem.Headline" />
+        <input id="Headline" name="Headline" class="large text" type="text" value="@Model.Headline" />
         <label for="SubHeadline">Sub-Headline:</label>
-        <input id="SubHeadline" name="SubHeadline" class="large text" type="text" value="@Model.FeaturedItem.SubHeadline" />
+        <input id="SubHeadline" name="SubHeadline" class="large text" type="text" value="@Model.SubHeadline" />
         <label for="LinkUrl">Link URL:</label>
-        <input id="LinkUrl" name="LinkUrl" class="large text" type="text" value="@Model.FeaturedItem.LinkUrl" />
+        <input id="LinkUrl" name="LinkUrl" class="large text" type="text" value="@Model.LinkUrl" />
         <label for="SlideOrder">Slide Order:</label>
-        <input id="SlideOrder" name="SlideOrder" class="small text" type="text" value="@Model.FeaturedItem.SlideOrder" />
+        <input id="SlideOrder" name="SlideOrder" class="small text" type="text" value="@Model.SlideOrder" />
         <span class="hint">Use the Slide Order to control the order in which the slides are loaded into the widget.</span>
         <br />
         <label for="GroupName">Group:</label>
-        @Html.DropDownList("GroupName", new SelectList(Model.Groups.Select(g => g.Name), Model.FeaturedItem.GroupName))
+        @Html.DropDownList("GroupName", new SelectList(Model.Groups.Select(g => g.Name), Model.GroupName))
+        <br /><br />
+        @BlurbEditorFor(Html, m => m.ContentHtml, @T("Slide Show Content:"), Model.AddMediaPath)
+        @Html.ValidationMessageFor(m => m.ContentHtml)
     </fieldset>
 </div>
 

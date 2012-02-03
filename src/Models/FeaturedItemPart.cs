@@ -28,5 +28,11 @@ namespace ContentSlider.Models {
             get { return Record.SlideOrder; }
             set { Record.SlideOrder = value; }
         }
+
+        public string ContentHtml
+        {
+            get { return Record.ContentHtml; }
+            set { Record.ContentHtml = value; }
+        }
     }
 }

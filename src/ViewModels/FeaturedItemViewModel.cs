@@ -5,5 +5,6 @@ namespace ContentSlider.Models {
         public string LinkUrl { get; set; }
         public string ImagePath { get; set; }
         public int SlideNumber { get; set; }
+        public string ContentHtml { get; set; }
     }
 }

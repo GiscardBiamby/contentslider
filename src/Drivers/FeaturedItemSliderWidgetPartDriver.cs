@@ -23,7 +23,8 @@ namespace ContentSlider.Drivers {
                     SubHeadline = fi.SubHeadline,
                     LinkUrl = fi.LinkUrl,
                     ImagePath = fi.Fields.Single(f => f.Name == "Picture").Storage.Get<string>(""),
-                    SlideNumber = ++slideNumber
+                    SlideNumber = ++slideNumber, 
+                    ContentHtml = fi.ContentHtml
                 }).ToList();
 
             var group = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup")

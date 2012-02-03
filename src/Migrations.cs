@@ -35,6 +35,7 @@ namespace ContentSlider {
                     .Column<string>("LinkUrl", col => col.Unlimited())
                     .Column<string>("GroupName", col => col.WithLength(100))
                     .Column<int>("SlideOrder", col => col.WithDefault(0))
+                    .Column<string>("ContentHtml", col => col.Unlimited())
                 );
 
             ContentDefinitionManager.AlterTypeDefinition("FeaturedItem", builder => builder
@@ -123,7 +124,7 @@ namespace ContentSlider {
 
         public int UpdateFrom5() {
             SchemaBuilder.AlterTable("FeaturedItemGroupPartRecord", builder =>
-                builder.AddColumn<string>("TransitionEffect", col => col.WithDefault("scrollLeft")));
+                builder.AddColumn<string>("TransitionEffect", col => col.WithDefault("hslide")));
             SchemaBuilder.AlterTable("FeaturedItemGroupPartRecord", builder =>
                 builder.AddColumn<bool>("ShowPager", col => {
                     col.WithDefault(true);

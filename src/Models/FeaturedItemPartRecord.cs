@@ -7,5 +7,6 @@ namespace ContentSlider.Models {
         public virtual string LinkUrl { get; set; }
         public virtual string GroupName { get; set; }
         public virtual int SlideOrder { get; set; }
+        public virtual string ContentHtml { get; set; }
     }
 }
