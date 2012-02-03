@@ -1,0 +1,57 @@
+﻿@using AwkwardShowcaseItemSlider.Models;
+
+@{
+    Script.Require("jQuery");
+    Style.Require("AwkwardShowcaseStyles");
+    Script.Require("jQueryAwkwardShowcase");
+}
+
+
+@if (Model.FeaturedItems.Count > 0) {
+    <div id="@Model.Group.Name" class="showcase">
+        @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems) {
+            bool itemIsLinked = !String.IsNullOrWhiteSpace(featuredItem.LinkUrl);
+            <div class="showcase-slide">
+                <div class="showcase-content">
+                    @* <!-- 
+                        If the slide contains multiple elements you should wrap them in a div with the class .showcase-content-wrapper. 
+                        We usually wrap even if there is only one element, because it looks better. 
+                    --> *@
+                    @if (itemIsLinked) {
+                        @:<a href="@featuredItem.LinkUrl">
+                    }
+                    <div class="showcase-content-wrapper">
+                        @if (!string.IsNullOrWhiteSpace(featuredItem.ImagePath)) {
+                            @Html.Image(featuredItem.ImagePath, "", null)
+                        }
+                    </div>
+                    @if (itemIsLinked) {
+                        @:</a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+    
+
+@using (Script.Foot()) {
+    if (Model.FeaturedItems.Count > 1) {
+<script type="text/javascript">// <![CDATA[
+$(document).ready(function () {
+    $('#@Model.Group.Name').awShowcase({
+            content_width: @Model.Group.GroupWidth,
+            content_height: @Model.Group.GroupHeight,
+            auto: true,
+            interval: @Model.Group.SlidePause,
+            loading: true,
+            arrows: true,
+            buttons: true,
+            transition: '@Model.Group.TransitionEffect',
+            transition_delay: 0,
+            transition_speed: @Model.Group.SlideSpeed
+    });
+});
+// ]]></script>
+    }
+}

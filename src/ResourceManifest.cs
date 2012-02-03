@@ -1,0 +1,22 @@
+﻿using Orchard.UI.Resources;
+
+namespace AwkwardShowcaseItemSlider
+{
+    public class ResourceManifest : IResourceManifestProvider
+    {
+        public void BuildManifests(ResourceManifestBuilder builder)
+        {
+            var manifest = builder.Add();
+
+            // 
+            // Styles:
+            manifest.DefineStyle("AwkwardShowcaseStyles").SetUrl("aw-showcase-style.css");
+
+
+            // 
+            // Scripts: 
+            manifest.DefineScript("jQueryAwkwardShowcase").SetUrl("jquery.aw-showcase.min.js", "jquery.aw-showcase.js").SetDependencies("jQuery");
+        }
+
+    }
+}
