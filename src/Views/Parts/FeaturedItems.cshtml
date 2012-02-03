@@ -1,14 +1,12 @@
 ﻿@using ContentSlider.Models;
-
 @{
     Script.Require("jQuery");
     Style.Require("ContentSliderStyles");
     Script.Require("jQueryAwkwardShowcase");
 }
 
-
 @if (Model.FeaturedItems.Count > 0) {
-    <div id="@(Model.Group.Name)-buttons"></div>
+    <div id="@(Model.Group.Name)-buttons" class="showcase-nav-buttons" style="width:@(Model.Group.GroupWidth)px;"></div>
     <div id="@Model.Group.Name" class="showcase">
         @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems)
         {
@@ -37,27 +35,24 @@
             </div>
         }
     </div>
-}
-    
+}   
 
-@using (Script.Foot())
-{
-    if (Model.FeaturedItems.Count > 1)
-    {
+@using (Script.Foot()) {
+    if (Model.FeaturedItems.Count > 1) {
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function () {
     $('#@Model.Group.Name').awShowcase({
-            nav_buttons: '#@(Model.Group.Name)-buttons',
             content_width: @Model.Group.GroupWidth,
             content_height: @Model.Group.GroupHeight,
             auto: true,
             interval: @Model.Group.SlidePause,
             loading: true,
-            arrows: true,
+            arrows: false,
             buttons: true,
             transition: '@Model.Group.TransitionEffect',
             transition_delay: 0,
-            transition_speed: @Model.Group.SlideSpeed
+            transition_speed: @Model.Group.SlideSpeed, 
+            continuous: true
     });
 });
 // ]]></script>

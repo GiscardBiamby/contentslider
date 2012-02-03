@@ -82,9 +82,8 @@
     <Content Include="Styles\aw-showcase\style-index5.css" />
     <Content Include="Styles\aw-showcase\style-index6.css" />
     <Content Include="Styles\aw-showcase-style.css" />
-    <Content Include="Styles\aw-showcase\style.original.css" />
+    <Content Include="Styles\aw-showcase\style.css" />
     <Content Include="Styles\colorpicker.css" />
-    <Content Include="Styles\FeaturedItems.css" />
     <Content Include="Styles\images\blank.gif" />
     <Content Include="Styles\images\colorpicker_background.png" />
     <Content Include="Styles\images\colorpicker_hex.png" />
