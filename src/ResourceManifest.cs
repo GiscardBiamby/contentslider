@@ -10,7 +10,7 @@ namespace AwkwardShowcaseItemSlider
 
             // 
             // Styles:
-            manifest.DefineStyle("AwkwardShowcaseStyles").SetUrl("aw-showcase-style.css");
+            manifest.DefineStyle("ContentSliderStyles").SetUrl("aw-showcase-style.css");
 
 
             // 

@@ -2,14 +2,16 @@
 
 @{
     Script.Require("jQuery");
-    Style.Require("AwkwardShowcaseStyles");
+    Style.Require("ContentSliderStyles");
     Script.Require("jQueryAwkwardShowcase");
 }
 
 
 @if (Model.FeaturedItems.Count > 0) {
+    <div id="@(Model.Group.Name)-buttons"></div>
     <div id="@Model.Group.Name" class="showcase">
-        @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems) {
+        @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems)
+        {
             bool itemIsLinked = !String.IsNullOrWhiteSpace(featuredItem.LinkUrl);
             <div class="showcase-slide">
                 <div class="showcase-content">
@@ -17,15 +19,18 @@
                         If the slide contains multiple elements you should wrap them in a div with the class .showcase-content-wrapper. 
                         We usually wrap even if there is only one element, because it looks better. 
                     --> *@
-                    @if (itemIsLinked) {
+                    @if (itemIsLinked)
+                    {
                         @:<a href="@featuredItem.LinkUrl">
                     }
                     <div class="showcase-content-wrapper">
-                        @if (!string.IsNullOrWhiteSpace(featuredItem.ImagePath)) {
+                        @if (!string.IsNullOrWhiteSpace(featuredItem.ImagePath))
+                        {
                             @Html.Image(featuredItem.ImagePath, "", null)
                         }
                     </div>
-                    @if (itemIsLinked) {
+                    @if (itemIsLinked)
+                    {
                         @:</a>
                     }
                 </div>
@@ -35,11 +40,14 @@
 }
     
 
-@using (Script.Foot()) {
-    if (Model.FeaturedItems.Count > 1) {
+@using (Script.Foot())
+{
+    if (Model.FeaturedItems.Count > 1)
+    {
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function () {
     $('#@Model.Group.Name').awShowcase({
+            nav_buttons: '#@(Model.Group.Name)-buttons',
             content_width: @Model.Group.GroupWidth,
             content_height: @Model.Group.GroupHeight,
             auto: true,
