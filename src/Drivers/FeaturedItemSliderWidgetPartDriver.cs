@@ -22,7 +22,6 @@ namespace ContentSlider.Drivers {
                     Headline = fi.Headline,
                     SubHeadline = fi.SubHeadline,
                     LinkUrl = fi.LinkUrl,
-                    ImagePath = fi.Fields.Single(f => f.Name == "Picture").Storage.Get<string>(""),
                     SlideNumber = ++slideNumber, 
                     ContentHtml = fi.ContentHtml
                 }).ToList();
