@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Orchard.ContentManagement;
 
-namespace AwkwardShowcaseItemSlider.Models {
+namespace ContentSlider.Models {
     public class FeaturedItemPart : ContentPart<FeaturedItemPartRecord> {
         
         public string Headline {

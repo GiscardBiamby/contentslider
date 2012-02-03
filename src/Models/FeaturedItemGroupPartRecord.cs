@@ -1,6 +1,6 @@
 using Orchard.ContentManagement.Records;
 
-namespace AwkwardShowcaseItemSlider.Models {
+namespace ContentSlider.Models {
     public class FeaturedItemGroupPartRecord : ContentPartRecord {
         public virtual string Name { get; set; }
         public virtual int GroupWidth { get; set; }

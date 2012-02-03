@@ -1,8 +1,8 @@
-using AwkwardShowcaseItemSlider.Models;
+using ContentSlider.Models;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Data;
 
-namespace AwkwardShowcaseItemSlider.Handlers {
+namespace ContentSlider.Handlers {
     public class FeaturedItemSliderWidgetPartHandler : ContentHandler {
         public FeaturedItemSliderWidgetPartHandler(IRepository<FeaturedItemSliderWidgetPartRecord> repository) {
             Filters.Add(StorageFilter.For(repository));

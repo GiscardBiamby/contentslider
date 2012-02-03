@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Orchard.Mvc.Routes;
 
-namespace AwkwardShowcaseItemSlider
+namespace ContentSlider
 {
     public class Routes : IRouteProvider
     {
@@ -16,7 +16,7 @@ namespace AwkwardShowcaseItemSlider
 
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
-            const string areaName = "AwkwardShowcaseItemSlider";
+            const string areaName = "ContentSlider";
             var emptyConstraints = new RouteValueDictionary();
             var sliderRouteValueDictionary = new RouteValueDictionary { { "area", areaName } };
             var mvcRouteHandler = new MvcRouteHandler();

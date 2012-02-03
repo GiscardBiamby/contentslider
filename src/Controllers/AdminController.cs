@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Web.Mvc;
-using AwkwardShowcaseItemSlider.Models;
+using ContentSlider.Models;
 using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.UI.Admin;
 
-namespace AwkwardShowcaseItemSlider.Controllers {
+namespace ContentSlider.Controllers {
 
     [ValidateInput(false), Admin]
     public class AdminController : Controller {

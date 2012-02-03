@@ -1,9 +1,9 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.Localization;
 using Orchard.UI.Navigation;
-using AwkwardShowcaseItemSlider.Models;
+using ContentSlider.Models;
 
-namespace AwkwardShowcaseItemSlider {
+namespace ContentSlider {
     public class AdminMenu : INavigationProvider {
         private readonly IContentManager _contentManager;
 
@@ -27,7 +27,7 @@ namespace AwkwardShowcaseItemSlider {
             if (FeaturedItemGroupExists()) {
                 menu.Add(T("Manage Feature Groups"), "1.1",
                          item =>
-                         item.Action("Groups", "Admin", new { area = "AwkwardShowcaseItemSlider" }));
+                         item.Action("Groups", "Admin", new { area = "ContentSlider" }));
 
                 menu.Add(T("New Feature"), "1.2",
                          item =>
@@ -37,7 +37,7 @@ namespace AwkwardShowcaseItemSlider {
             if (FeaturedItemExists()) {
                 menu.Add(T("Manage Features"), "1.3",
                          item =>
-                         item.Action("Items", "Admin", new { area = "AwkwardShowcaseItemSlider" }));
+                         item.Action("Items", "Admin", new { area = "ContentSlider" }));
             }
         }
 

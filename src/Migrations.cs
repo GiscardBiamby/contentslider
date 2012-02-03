@@ -1,7 +1,7 @@
 using Orchard.ContentManagement.MetaData;
 using Orchard.Data.Migration;
 
-namespace AwkwardShowcaseItemSlider {
+namespace ContentSlider {
     public class Migrations : DataMigrationImpl {
 
         public int Create() {

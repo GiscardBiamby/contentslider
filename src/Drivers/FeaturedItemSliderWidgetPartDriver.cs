@@ -1,9 +1,9 @@
 using System.Linq;
-using AwkwardShowcaseItemSlider.Models;
+using ContentSlider.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 
-namespace AwkwardShowcaseItemSlider.Drivers {
+namespace ContentSlider.Drivers {
     public class FeaturedItemSliderWidgetPartDriver : ContentPartDriver<FeaturedItemSliderWidgetPart> {
         private readonly IContentManager _contentManager;
 

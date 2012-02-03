@@ -1,4 +1,4 @@
-namespace AwkwardShowcaseItemSlider.Models {
+namespace ContentSlider.Models {
     public class FeaturedItemViewModel {
         public string Headline { get; set; }
         public string SubHeadline { get; set; }

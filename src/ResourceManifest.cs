@@ -1,6 +1,6 @@
 ﻿using Orchard.UI.Resources;
 
-namespace AwkwardShowcaseItemSlider
+namespace ContentSlider
 {
     public class ResourceManifest : IResourceManifestProvider
     {

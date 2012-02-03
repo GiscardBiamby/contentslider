@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Orchard.ContentManagement;
 
-namespace AwkwardShowcaseItemSlider.Models {
+namespace ContentSlider.Models {
     public class FeaturedItemGroupPart : ContentPart<FeaturedItemGroupPartRecord> {
         private const int MinFeatureDimension = 1;
         private const int MaxFeatureDimension = 99999;
