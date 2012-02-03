@@ -68,29 +68,3 @@
     </fieldset>
 </div>
 
-@using (Script.Foot())
-{
-    <script type="text/javascript">
-    //<![CDATA[
-        var groupImageWidths = {};
-        var groupImageHeights = {};
-
-        @foreach(var group in Model.Groups) {
-            <text>groupImageWidths["@group.Name"] = "@group.ImageWidth";</text>
-            <text>groupImageHeights["@group.Name"] = "@group.ImageHeight";</text>
-        }
-
-        $(function () {
-            $("#GroupName").bind('change', groupChanged);
-            groupChanged();
-        });
-
-        function groupChanged() {
-            var groupName = $("#GroupName").val();
-            if (groupName) {
-                $("span.hint:first").text("For the group '" + groupName + "' the picture should be " + groupImageWidths[groupName] + " x " + groupImageHeights[groupName]);
-            }
-        }
-    //]]>
-    </script>
-}

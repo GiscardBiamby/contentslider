@@ -11,8 +11,6 @@ namespace ContentSlider {
                     .Column<string>("Name", col => col.WithLength(100))
                     .Column<int>("GroupWidth")
                     .Column<int>("GroupHeight")
-                    .Column<int>("ImageWidth")
-                    .Column<int>("ImageHeight")
                     .Column<string>("BackgroundColor")
                     .Column<string>("ForegroundColor")
                     .Column<int>("SlideSpeed", cfg => cfg.WithDefault(300))

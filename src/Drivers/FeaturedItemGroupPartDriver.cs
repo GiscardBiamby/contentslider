@@ -38,8 +38,6 @@ namespace ContentSlider.Drivers {
             
             part.GroupWidth = GetIntegerValue(part, context, "GroupWidth");
             part.GroupHeight = GetIntegerValue(part, context, "GroupHeight");
-            part.ImageWidth = GetIntegerValue(part, context, "ImageWidth");
-            part.ImageHeight = GetIntegerValue(part, context, "ImageHeight");
             part.SlideSpeed = GetIntegerValue(part, context, "SlideSpeed");
             part.SlidePause = GetIntegerValue(part, context, "SlidePause");
             part.ShowPager = GetBoolValue(part, context, "ShowPager");
@@ -74,8 +72,6 @@ namespace ContentSlider.Drivers {
             context.Element(part.PartDefinition.Name).SetAttributeValue("TransitionEffect", part.TransitionEffect);
             context.Element(part.PartDefinition.Name).SetAttributeValue("GroupWidth", part.GroupWidth);
             context.Element(part.PartDefinition.Name).SetAttributeValue("GroupHeight", part.GroupHeight);
-            context.Element(part.PartDefinition.Name).SetAttributeValue("ImageWidth", part.ImageWidth);
-            context.Element(part.PartDefinition.Name).SetAttributeValue("ImageHeight", part.ImageHeight);
             context.Element(part.PartDefinition.Name).SetAttributeValue("SlideSpeed", part.SlideSpeed);
             context.Element(part.PartDefinition.Name).SetAttributeValue("SlidePause", part.SlidePause);
             context.Element(part.PartDefinition.Name).SetAttributeValue("ShowPager", part.ShowPager);

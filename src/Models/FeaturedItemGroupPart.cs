@@ -24,18 +24,6 @@ namespace ContentSlider.Models {
             set { Record.GroupHeight = value; }
         }
 
-        [Range(MinFeatureDimension, MaxFeatureDimension, ErrorMessage = "Image Width must be greater than zero.")]
-        public int ImageWidth {
-            get { return Record.ImageWidth; }
-            set { Record.ImageWidth = value; }
-        }
-
-        [Range(MinFeatureDimension, MaxFeatureDimension, ErrorMessage = "Image Height must be greater than zero.")]
-        public int ImageHeight {
-            get { return Record.ImageHeight; }
-            set { Record.ImageHeight = value; }
-        }
-
         [Required]
         public string BackgroundColor {
             get { return Record.BackgroundColor; }
