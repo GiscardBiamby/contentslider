@@ -7,9 +7,11 @@ namespace ContentSlider.Drivers {
     public class FeaturedItemSliderWidgetPartDriver : ContentPartDriver<FeaturedItemSliderWidgetPart> {
         private readonly IContentManager _contentManager;
 
+
         public FeaturedItemSliderWidgetPartDriver(IContentManager contentManager) {
             _contentManager = contentManager;
         }
+
 
         protected override DriverResult Display(FeaturedItemSliderWidgetPart part, string displayType, dynamic shapeHelper) {
             int slideNumber = 0;
@@ -40,6 +42,7 @@ namespace ContentSlider.Drivers {
                 () => shapeHelper.Parts_FeaturedItems(FeaturedItems: featuredItems, ContentPart: part, Group: group));
         }
 
+
         protected override DriverResult Editor(FeaturedItemSliderWidgetPart part, dynamic shapeHelper) {
             var groups = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup")
                 .List().Select(fig => fig.Name).ToList();
@@ -49,9 +52,27 @@ namespace ContentSlider.Drivers {
                 () => shapeHelper.EditorTemplate(TemplateName: "Parts.FeaturedItemSliderWidget.Edit", Model: viewModel));
         }
 
-        protected override DriverResult Editor(FeaturedItemSliderWidgetPart part, IUpdateModel updater, dynamic shapeHelper) {
+
+        protected override DriverResult Editor(FeaturedItemSliderWidgetPart part, IUpdateModel updater, dynamic shapeHelper) 
+        {
             updater.TryUpdateModel(part, "", null, null);
             return Editor(part, shapeHelper);
+        }
+
+
+        protected override void Importing(FeaturedItemSliderWidgetPart part, Orchard.ContentManagement.Handlers.ImportContentContext context)
+        {
+            var groupName = context.Attribute(part.PartDefinition.Name, "GroupName");
+            if (groupName != null)
+            {
+                part.GroupName = groupName;
+            }
+        }
+
+
+        protected override void Exporting(FeaturedItemSliderWidgetPart part, Orchard.ContentManagement.Handlers.ExportContentContext context)
+        {
+            context.Element(part.PartDefinition.Name).SetAttributeValue("GroupName", part.GroupName);
         }
     }
 }
