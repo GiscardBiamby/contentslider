@@ -22,7 +22,7 @@ namespace ContentSlider {
 
             ContentDefinitionManager.AlterTypeDefinition("FeaturedItemGroup"
                 , builder => builder
-                    .DisplayedAs("Featured Item Group")
+                    .DisplayedAs("Slide Show")
                     .WithPart("FeaturedItemGroupPart")
                     .WithPart("CommonPart")
                     .WithPart("IdentityPart")
@@ -41,7 +41,7 @@ namespace ContentSlider {
 
             ContentDefinitionManager.AlterTypeDefinition("FeaturedItem"
                 , builder => builder
-                    .DisplayedAs("Featured Item")
+                    .DisplayedAs("Slide")
                     .WithPart("FeaturedItemPart")
                     .WithPart("CommonPart")
                     .WithPart("IdentityPart")

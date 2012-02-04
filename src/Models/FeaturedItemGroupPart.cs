@@ -5,6 +5,9 @@ namespace ContentSlider.Models {
     public class FeaturedItemGroupPart : ContentPart<FeaturedItemGroupPartRecord> {
         private const int MinFeatureDimension = 1;
         private const int MaxFeatureDimension = 99999;
+        private const int DefaultSlideSpeed = 300;
+        private const int DefaultSlidePause = 5000;
+
 
         [Required]
         public string Name {
@@ -44,13 +47,13 @@ namespace ContentSlider.Models {
 
         [Range(1, int.MaxValue, ErrorMessage = "Slide Speed must at least one millisecond.")]
         public int SlideSpeed {
-            get { return Record.SlideSpeed; }
+            get { return Record.SlideSpeed==0 ? DefaultSlideSpeed : Record.SlideSpeed; }
             set { Record.SlideSpeed = value; }
         }
 
         [Range(15, int.MaxValue, ErrorMessage = "Slide Pause must be at least fifteen milliseconds.")]
         public int SlidePause {
-            get { return Record.SlidePause; }
+            get { return Record.SlidePause==0 ? DefaultSlidePause : Record.SlidePause; }
             set { Record.SlidePause = value; }
         }
 
