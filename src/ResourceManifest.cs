@@ -15,7 +15,7 @@ namespace ContentSlider
 
             // 
             // Scripts: 
-            manifest.DefineScript("jQueryAwkwardShowcase").SetUrl("jquery.aw-showcase.min.js", "jquery.aw-showcase.js").SetDependencies("jQuery");
+            manifest.DefineScript("jQueryAwkwardShowcase").SetUrl("jquery.aw-showcase.js").SetDependencies("jQuery");
         }
 
     }

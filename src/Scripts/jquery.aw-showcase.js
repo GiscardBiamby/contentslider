@@ -4,53 +4,16 @@
 	http://www.jquery.com
 	http://www.awkwardgroup.com/sandbox/awkward-showcase-a-jquery-plugin
 	http://demo.awkwardgroup.com/showcase
+    https://bitbucket.org/awkwardgroup/awkward-showcase/src
 	Version: 1.1.1
 
 	Copyright (C) 2011 Awkward Group (http://www.awkwardgroup.com)
 	Licensed under Attribution-ShareAlike 3.0 Unported
 	http://creativecommons.org/licenses/by-sa/3.0/
 
-	Markup example for jQuery("#showcase").awShowcase();
+Markup example for jQuery("#showcase").awShowcase();
  
-	<div id="showcase" class="showcase">
-		<!-- Each child div in #showcase represents a slide -->
-		<div class="showcase-slide">
-			<!-- Put the slide content in a div with the class .showcase-content -->
-			<div class="showcase-content">
-				<!-- If the slide contains multiple elements you should wrap them in a div with the class .showcase-content-wrapper. 
-				We usually wrap even if there is only one element, because it looks better. :-) -->
-				<div class="showcase-content-wrapper">
-					<img src="images/01.jpg" alt="01" />
-				</div>
-			</div>
-			<!-- Put the caption content in a div with the class .showcase-caption -->
-			<div class="showcase-caption">
-				The Caption
-			</div>
-			<!-- Put the tooltips in a div with the class .showcase-tooltips. -->
-			<div class="showcase-tooltips">
-				<!-- Each anchor in .showcase-tooltips represents a tooltip. The coords attribute represents the position of the tooltip. -->
-				<a href="http://www.awkward.se" coords="634,130">
-					<!-- The content of the anchor-tag is displayed in the tooltip. -->
-					This is a tooltip that displays the anchor html in a nice way.
-				</a>
-				<a href="http://www.awkward.se" coords="356, 172">
-					<!-- You can add multiple elements to the anchor-tag which are display in the tooltip. -->
-					<img src="images/glasses.png" />
-					<span style="display: block; font-weight: bold; padding: 3px 0 3px 0; text-align: center;">
-						White Glasses: 500$
-					</span>
-				</a>
-			</div>
-		</div>
-		<div class="showcase-slide">
-			<div class="showcase-content">
-				<div class="showcase-content-wrapper">
-					Content...
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 */
 
@@ -864,17 +827,27 @@
                 if ((current_id - lastVisible) > options.thumbnails_slidex) {
                     distance = current_id - lastVisible;
 
-                    while (distance > options.thumbnails_slidex) {
-                        distance -= options.thumbnails_slidex;
-                        multiplySlidePosition++;
+                    /*while (distance > options.thumbnails_slidex)
+                    {
+                    distance -= options.thumbnails_slidex;
+                    multiplySlidePosition++;
+                    }*/
+                    if (distance > options.thumbnails_slidex) {
+                        multiplySlidePosition = distance - options.thumbnails_slidex;
+                        distance = options.thumbnails_slidex;
                     }
                 }
                 else if ((firstVisible - current_id) > options.thumbnails_slidex) {
                     distance = firstVisible - current_id;
 
-                    while (distance > options.thumbnails_slidex) {
-                        distance -= options.thumbnails_slidex;
-                        multiplySlidePosition++;
+                    /*while (distance > options.thumbnails_slidex)
+                    {
+                    distance -= options.thumbnails_slidex;
+                    multiplySlidePosition++;
+                    }*/
+                    if (distance > options.thumbnails_slidex) {
+                        multiplySlidePosition = distance - options.thumbnails_slidex;
+                        distance = options.thumbnails_slidex;
                     }
                 }
                 else { multiplySlidePosition = 1; }
@@ -945,10 +918,10 @@
                     jQuery(this).css('top', parseInt(coords[1]) - (parseInt(options.tooltip_icon_height) / 2));
                     var content = jQuery(this).html();
                     jQuery(this).mouseenter(function () {
-                        animateTooltip(container, coords[0], coords[1], content);
+                        animateTooltip(container, coords[0], coords[1], content, true);
                     });
                     jQuery(this).mouseleave(function () {
-                        animateTooltip(container, coords[0], coords[1], content);
+                        animateTooltip(container, coords[0], coords[1], content, false);
                     });
                     jQuery(this).html('');
                     jQuery(this).fadeIn(300);
@@ -958,12 +931,16 @@
                 }
             });
         }
-
+        // Lets trace something, feedback is sweet :)
+        function trace(s) {
+            if (this.console && typeof console.log != "undefined")
+                console.log(s);
+        }
         // Controls the animation for the tooltips
         var tooltip = null;
-        function animateTooltip(container, x, y, content) {
+        function animateTooltip(container, x, y, content, create) {
             // if tooltip is null (doesn't exsist)
-            if (tooltip === null) {
+            if (create === true) {
                 // Create the tooltip
                 tooltip = jQuery(document.createElement('div'))
 					.addClass('showcase-tooltip')
@@ -1106,4 +1083,4 @@
         showcase.removeClass('showcase-load');
     };
 
-})(jQuery);
+})(jQuery); 
