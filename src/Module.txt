@@ -2,7 +2,7 @@ Name: Content Slider
 AntiForgery: enabled
 Author: Giscard Biamby
 Website: http://contentslider.codeplex.com
-Version: 0.0.1
+Version: 0.0.2
 OrchardVersion: 1.3.10
 Description: Adds a new content type called FeaturedItem, which includes an image and a headline, and optionally a sub-headline and link URL. Also includes a FeaturedItemsWidget for displaying the featured items using a jQuery slider. This module depends on the Contrib.MediaPickerField module.
 Features:

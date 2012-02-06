@@ -78,7 +78,6 @@
     <Content Include="Content\Images\aw-showcase\white-opacity-80.png" />
     <Content Include="Scripts\colorpicker.js" />
     <Content Include="Scripts\jquery.aw-showcase.js" />
-    <Content Include="Scripts\jquery.aw-showcase.min.js" />
     <Content Include="Styles\aw-showcase\style-index5.css" />
     <Content Include="Styles\aw-showcase\style-index6.css" />
     <Content Include="Styles\aw-showcase-style.css" />
