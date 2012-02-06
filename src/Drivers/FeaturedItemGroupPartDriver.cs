@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ContentSlider.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
@@ -13,11 +14,42 @@ namespace ContentSlider.Drivers {
         }
 
         protected override DriverResult Display(FeaturedItemGroupPart part, string displayType, dynamic shapeHelper) {
-            var numberOfItemsInGroup = _contentManager.Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem")
-                .Where(fi => fi.GroupName == part.Name).Count();
+            if (displayType.Equals("Summary", StringComparison.OrdinalIgnoreCase)
+                   || displayType.Equals("SummaryAdmin", StringComparison.OrdinalIgnoreCase)) {
+                var numberOfItemsInGroup = _contentManager.Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem")
+                    .Where(fi => fi.GroupName == part.Name).Count();
 
-            return ContentShape("Parts_FeaturedItemGroup_SummaryAdmin",
-                () => shapeHelper.Parts_FeaturedItemGroup_SummaryAdmin(ContentPart: part, NumberOfItems: numberOfItemsInGroup));
+                return ContentShape("Parts_FeaturedItemGroup_SummaryAdmin",
+                    () => shapeHelper.Parts_FeaturedItemGroup_SummaryAdmin(ContentPart: part, NumberOfItems: numberOfItemsInGroup));
+            }
+            else {
+                int slideNumber = 0;
+
+                var featuredItems = _contentManager.Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem")
+                    .Where(fip => fip.GroupName == part.Name)
+                    .OrderBy(fi => fi.SlideOrder)
+                    .List()
+                    .Select(fi => new FeaturedItemViewModel {
+                        Headline = fi.Headline,
+                        SubHeadline = fi.SubHeadline,
+                        LinkUrl = fi.LinkUrl,
+                        SlideNumber = ++slideNumber,
+                        ContentHtml = fi.ContentHtml
+                    }).ToList();
+
+                var group = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup")
+                    .Where(fig => fig.Name == part.Name)
+                    .List()
+                    .SingleOrDefault();
+
+                if (group != null) {
+                    group.BackgroundColor = group.BackgroundColor.TrimStart('#');
+                    group.ForegroundColor = group.ForegroundColor.TrimStart('#');
+                }
+
+                return ContentShape("Parts_FeaturedItems",
+                    () => shapeHelper.Parts_FeaturedItems(FeaturedItems: featuredItems, ContentPart: part, Group: group));
+            }
         }
 
         protected override DriverResult Editor(FeaturedItemGroupPart part, dynamic shapeHelper) {
