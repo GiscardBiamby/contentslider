@@ -1,5 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using Orchard.ContentManagement.Drivers;
 using Orchard.ContentManagement.MetaData;
+using Orchard.ContentManagement.MetaData.Builders;
+using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
+using Orchard.Data;
 
 namespace ContentSlider {
     public class Migrations : DataMigrationImpl {
@@ -19,7 +26,9 @@ namespace ContentSlider {
                     .Column<bool>("ShowPager", col => col.WithDefault(true))
                     .Column<string>("TransitionEffect", col => col.WithDefault("hslide"))
             );
-
+            ContentDefinitionManager.AlterPartDefinition("FeaturedItemGroupPart"
+                , builder => builder.Attachable().Named("Slide Show")
+            ); 
             ContentDefinitionManager.AlterTypeDefinition("FeaturedItemGroup"
                 , builder => builder
                     .DisplayedAs("Slide Show")
