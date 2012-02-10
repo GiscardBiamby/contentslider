@@ -167,9 +167,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Content\Images\aw-showcase\psd\arrows-small.psd" />
-    <None Include="Content\Images\aw-showcase\psd\arrows.psd" />
-    <None Include="Content\Images\aw-showcase\psd\plus.psd" />
+    <Content Include="Content\Images\aw-showcase\psd\arrows-small.psd" />
+    <Content Include="Content\Images\aw-showcase\psd\arrows.psd" />
+    <Content Include="Content\Images\aw-showcase\psd\plus.psd" />
     <Content Include="Content\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
