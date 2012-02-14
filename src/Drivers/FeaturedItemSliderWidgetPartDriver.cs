@@ -52,11 +52,20 @@ namespace ContentSlider.Drivers {
 
         protected override DriverResult Editor(FeaturedItemSliderWidgetPart part, dynamic shapeHelper) {
             var groups = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>()
-                .Where(s => s.Name != null && s.Name != "").List().Select(fig => fig.Name).ToList();
+                .Where(s => s.Name != null && s.Name != "")
+                .List()
+                .Select(fig => fig.Name)
+                .ToList();
 
             var viewModel = new FeaturedItemSliderWidgetEditViewModel { GroupNames = groups, SelectedGroup = part.GroupName};
-            return ContentShape("Parts_FeaturedItemSliderWidget_Edit",
-                () => shapeHelper.EditorTemplate(TemplateName: "Parts.FeaturedItemSliderWidget.Edit", Model: viewModel));
+            
+            return ContentShape(
+                "Parts_FeaturedItemSliderWidget_Edit",
+                () => shapeHelper.EditorTemplate(
+                    TemplateName: "Parts.FeaturedItemSliderWidget.Edit"
+                    , Model: viewModel
+                )
+            );
         }
 
 

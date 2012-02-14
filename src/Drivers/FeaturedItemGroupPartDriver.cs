@@ -35,9 +35,10 @@ namespace ContentSlider.Drivers {
                         LinkUrl = fi.LinkUrl,
                         SlideNumber = ++slideNumber,
                         ContentHtml = fi.ContentHtml
-                    }).ToList();
+                    })
+                    .ToList();
 
-                var group = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup")
+                var group = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>()
                     .Where(fig => fig.Name == part.Name)
                     .List()
                     .SingleOrDefault();
