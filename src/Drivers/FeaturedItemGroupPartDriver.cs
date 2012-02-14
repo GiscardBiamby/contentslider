@@ -25,7 +25,7 @@ namespace ContentSlider.Drivers {
             else {
                 int slideNumber = 0;
 
-                var featuredItems = _contentManager.Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem")
+                var featuredItems = _contentManager.Query<FeaturedItemPart, FeaturedItemPartRecord>()
                     .Where(fip => fip.GroupName == part.Name)
                     .OrderBy(fi => fi.SlideOrder)
                     .List()
@@ -53,8 +53,13 @@ namespace ContentSlider.Drivers {
         }
 
         protected override DriverResult Editor(FeaturedItemGroupPart part, dynamic shapeHelper) {
-            return ContentShape("Parts_FeaturedItemGroup_Edit",
-                () => shapeHelper.EditorTemplate(TemplateName: "Parts.FeaturedItemGroup.Edit", Model: part));
+            return ContentShape(
+                "Parts_FeaturedItemGroup_Edit",
+                () => shapeHelper.EditorTemplate(
+                    TemplateName: "Parts.FeaturedItemGroup.Edit"
+                    , Model: part
+                )
+            );
         }
 
         protected override DriverResult Editor(FeaturedItemGroupPart part, IUpdateModel updater, dynamic shapeHelper) {

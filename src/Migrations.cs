@@ -12,6 +12,9 @@ namespace ContentSlider {
     public class Migrations : DataMigrationImpl {
 
         public int Create() {
+
+            // 
+            // Slide Groups: 
             SchemaBuilder.CreateTable("FeaturedItemGroupPartRecord"
                 , builder => builder
                     .ContentPartRecord()
@@ -27,7 +30,9 @@ namespace ContentSlider {
                     .Column<string>("TransitionEffect", col => col.WithDefault("hslide"))
             );
             ContentDefinitionManager.AlterPartDefinition("FeaturedItemGroupPart"
-                , builder => builder.Attachable().Named("Slide Show")
+                , builder => builder
+                    .Attachable()
+                    .Named("Slide Show")
             ); 
             ContentDefinitionManager.AlterTypeDefinition("FeaturedItemGroup"
                 , builder => builder
@@ -37,6 +42,8 @@ namespace ContentSlider {
                     .WithPart("IdentityPart")
             );
 
+            // 
+            // Slides
             SchemaBuilder.CreateTable("FeaturedItemPartRecord"
                 , builder => builder
                     .ContentPartRecord()
@@ -56,6 +63,8 @@ namespace ContentSlider {
                     .WithPart("IdentityPart")
             );
 
+            // 
+            // Widget
             SchemaBuilder.CreateTable("FeaturedItemSliderWidgetPartRecord"
                 , builder => builder
                     .ContentPartRecord()

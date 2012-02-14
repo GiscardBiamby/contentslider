@@ -20,11 +20,14 @@ namespace ContentSlider.Controllers {
 
         public ActionResult Items(string groupName) {
             var list = Shape.List();
+            var featuredItemsQuery = _contentManager
+                .Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem")
+                .OrderBy(fi => fi.SlideOrder);
 
-            var featuredItemsQuery = _contentManager.Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem").OrderBy(fi => fi.SlideOrder);
             if (!string.IsNullOrWhiteSpace(groupName)) {
                 featuredItemsQuery.Where(fi => fi.GroupName == groupName);
             }
+
             var featuredItems = featuredItemsQuery.List();
             list.AddRange(featuredItems.Select(fi => _contentManager.BuildDisplay(fi, "SummaryAdmin")));
 
@@ -38,7 +41,10 @@ namespace ContentSlider.Controllers {
         public ActionResult Groups() {
             var list = Shape.List();
 
-            var groups = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup").List();
+            var groups = _contentManager
+                .Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup")
+                .Where<FeaturedItemGroupPartRecord>(s => s.Name != null && s.Name != "")
+                .List();
             list.AddRange(groups.Select(g => _contentManager.BuildDisplay(g, "SummaryAdmin")));
             
             dynamic viewModel = Shape.ViewModel();

@@ -1,6 +1,7 @@
 ﻿<Placement>
     <Place Parts_FeaturedItemSliderWidget_Edit="Content:5"/>
     <Place Parts_FeaturedItems="Content:1"/>
+    <Place Parts_FeaturedItemGroup_Edit="Content:1"/>
 
     <Match ContentType="FeaturedItem">
         <Place Parts_FeaturedItem_Edit="Content:5"/>

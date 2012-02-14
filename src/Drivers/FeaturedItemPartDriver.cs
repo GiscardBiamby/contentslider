@@ -3,13 +3,21 @@ using ContentSlider.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.ContentManagement.Handlers;
+using Orchard.Data; 
+
 
 namespace ContentSlider.Drivers {
     public class FeaturedItemPartDriver : ContentPartDriver<FeaturedItemPart> {
         private readonly IContentManager _contentManager;
+       // private readonly IRepository<FeaturedItemGroupPartRecord> _slideGroupRepo;
 
-        public FeaturedItemPartDriver(IContentManager contentManager) {
+
+        public FeaturedItemPartDriver(
+            IContentManager contentManager
+            //, IRepository<FeaturedItemGroupPartRecord> slideGroupRepo
+            ) {
             _contentManager = contentManager;
+            //_slideGroupRepo = slideGroupRepo;
         }
 
         protected override DriverResult Display(FeaturedItemPart part, string displayType, dynamic shapeHelper) {
@@ -46,7 +54,11 @@ namespace ContentSlider.Drivers {
 
         private FeaturedItemEditViewModel BuildViewModel(FeaturedItemPart part)
         {
-            var groups = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup").List();
+            var groups = _contentManager
+                .Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>()
+                .Where<FeaturedItemGroupPartRecord>(x => x.Name != null && x.Name != "")
+                .List();
+
             return new FeaturedItemEditViewModel
             {
                 Headline    = part.Headline   
