@@ -48,8 +48,14 @@ namespace ContentSlider.Drivers {
                     group.ForegroundColor = group.ForegroundColor.TrimStart('#');
                 }
 
-                return ContentShape("Parts_FeaturedItems",
-                    () => shapeHelper.Parts_FeaturedItems(FeaturedItems: featuredItems, ContentPart: part, Group: group));
+                return ContentShape(
+                    "Parts_FeaturedItems",
+                    () => shapeHelper.Parts_FeaturedItems(
+                        FeaturedItems: featuredItems
+                        , ContentPart: part
+                        , Group: group
+                    )
+                );
             }
         }
 
