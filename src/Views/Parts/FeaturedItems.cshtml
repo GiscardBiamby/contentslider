@@ -3,12 +3,12 @@
     Script.Require("jQuery");
     Style.Require("ContentSliderStyles");
     Script.Require("jQueryAwkwardShowcase");
+    string groupName = Model.Group.Name.Replace(" ", "-"); 
 }
 
 @if (Model.FeaturedItems.Count > 0) {
     <div class="showcase-group-wrapper" style="width:@(Model.Group.GroupWidth)px;">
-
-        <div id="@Model.Group.Name" class="showcase">
+        <div id="@groupName" class="showcase">
             @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems)
             {
                 <div class="showcase-slide">
@@ -33,7 +33,7 @@
     if (Model.FeaturedItems.Count > 1) {
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function () {
-    $('#@Model.Group.Name').awShowcase({
+    $('#@groupName').awShowcase({
             content_width: @Model.Group.GroupWidth,
             content_height: @Model.Group.GroupHeight,
             auto: true,
