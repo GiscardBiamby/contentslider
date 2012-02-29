@@ -2,27 +2,9 @@ using System.Linq;
 using System.Web.Mvc;
 using ContentSlider.Models;
 using Orchard.ContentManagement;
+using Orchard.Core.Common.Models;
 using Orchard.DisplayManagement;
 using Orchard.UI.Admin;
-using System;
-using System.Linq;
-using System.Web.Mvc;
-using Orchard.ContentManagement;
-using Orchard.ContentManagement.Drivers;
-using Orchard.ContentManagement.Handlers;
-using Orchard.ContentManagement.MetaData;
-using Orchard.Core.Common.Models;
-using Orchard.Core.Containers.Models;
-using Orchard.Core.Containers.ViewModels;
-using Orchard.Localization;
-using Orchard.UI.Notify;
-using Orchard.DisplayManagement;
-using Orchard.Core.Containers.Extensions;
-using System.Web.Routing;
-using Orchard.Settings;
-using Orchard.Core.Feeds;
-using Orchard.UI.Navigation;
-using Orchard.ContentManagement.Aspects;
 
 namespace ContentSlider.Controllers {
 
