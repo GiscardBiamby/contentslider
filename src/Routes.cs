@@ -23,13 +23,13 @@ namespace ContentSlider
 
             return new[] {
                 new RouteDescriptor {
-                    Route = new Route(
-                        "Admin/FeaturedItems/{groupName}",
+                    Name = "ContentSlider.FeaturedItems"
+                    , Route = new Route(
+                        "Admin/FeaturedItems",
                         new RouteValueDictionary {
                             {"area", areaName},
                             {"controller", "Admin"},
-                            {"action", "Items"},
-                            {"groupName", ""}
+                            {"action", "Items"}
                         },
                         emptyConstraints, sliderRouteValueDictionary, mvcRouteHandler)
                 },
