@@ -4,6 +4,25 @@ using ContentSlider.Models;
 using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.UI.Admin;
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using Orchard.ContentManagement;
+using Orchard.ContentManagement.Drivers;
+using Orchard.ContentManagement.Handlers;
+using Orchard.ContentManagement.MetaData;
+using Orchard.Core.Common.Models;
+using Orchard.Core.Containers.Models;
+using Orchard.Core.Containers.ViewModels;
+using Orchard.Localization;
+using Orchard.UI.Notify;
+using Orchard.DisplayManagement;
+using Orchard.Core.Containers.Extensions;
+using System.Web.Routing;
+using Orchard.Settings;
+using Orchard.Core.Feeds;
+using Orchard.UI.Navigation;
+using Orchard.ContentManagement.Aspects;
 
 namespace ContentSlider.Controllers {
 
@@ -21,12 +40,15 @@ namespace ContentSlider.Controllers {
         public ActionResult Items(string groupName) {
             var list = Shape.List();
             var featuredItemsQuery = _contentManager
-                .Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem")
-                .OrderBy(fi => fi.SlideOrder);
+                .Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem");
 
             if (!string.IsNullOrWhiteSpace(groupName)) {
                 featuredItemsQuery.Where(fi => fi.GroupName == groupName);
             }
+
+            featuredItemsQuery
+                .Join<CommonPartRecord>()
+                .OrderByDescending(cr => cr.ModifiedUtc);
 
             var featuredItems = featuredItemsQuery.List();
             list.AddRange(featuredItems.Select(fi => _contentManager.BuildDisplay(fi, "SummaryAdmin")));
