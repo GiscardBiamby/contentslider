@@ -1,10 +1,18 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using ContentSlider.Models;
 using Orchard.ContentManagement;
 using Orchard.Core.Common.Models;
+using Orchard.Core.Contents.Controllers;
 using Orchard.DisplayManagement;
+using Orchard.Environment.Extensions;
+using Orchard.Localization;
+using Orchard.Security;
 using Orchard.UI.Admin;
+using Orchard.UI.Navigation;
+using Orchard.UI.Notify;
+
 
 namespace ContentSlider.Controllers {
 
@@ -19,7 +27,7 @@ namespace ContentSlider.Controllers {
 
         dynamic Shape { get; set; }
 
-        public ActionResult Items(string groupName) {
+        public ActionResult Items(string groupName, PagerParameters pagerParameters) {
             var list = Shape.List();
             var featuredItemsQuery = _contentManager
                 .Query<FeaturedItemPart, FeaturedItemPartRecord>("FeaturedItem");

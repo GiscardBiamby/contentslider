@@ -38,22 +38,17 @@ namespace ContentSlider.Drivers {
                     })
                     .ToList();
 
-                var group = _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>()
-                    .Where(fig => fig.Name == part.Name)
-                    .List()
-                    .SingleOrDefault();
 
-                if (group != null) {
-                    group.BackgroundColor = group.BackgroundColor.TrimStart('#');
-                    group.ForegroundColor = group.ForegroundColor.TrimStart('#');
-                }
+                part.BackgroundColor = part.BackgroundColor.TrimStart('#');
+                part.ForegroundColor = part.ForegroundColor.TrimStart('#');
+                
 
                 return ContentShape(
                     "Parts_FeaturedItems",
                     () => shapeHelper.Parts_FeaturedItems(
                         FeaturedItems: featuredItems
                         , ContentPart: part
-                        , Group: group
+                        , Group: part
                     )
                 );
             }

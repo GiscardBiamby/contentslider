@@ -8,11 +8,11 @@
 }
 
 @if (Model.FeaturedItems.Count > 0) {
+    int i = 0;
     <div class="showcase-group-wrapper" style="width:@(Model.Group.GroupWidth)px;">
         <div id="@groupName" class="showcase">
-            @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems)
-            {
-                <div class="showcase-slide">
+            @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems) {
+                <div class="showcase-slide" @Html.Raw(i==0? "" : @"style=""display:none"";")>
                     <div class="showcase-content">
                         @* <!-- 
                             If the slide contains multiple elements you should wrap them in a div with the class .showcase-content-wrapper. 
@@ -25,6 +25,7 @@
                         </div>
                     </div>
                 </div>
+                i++;
             }
         </div>
     </div>
@@ -42,7 +43,7 @@ $(document).ready(function () {
             loading: true,
             arrows: false,
             buttons: true,
-            transition: '@Model.Group.TransitionEffect',
+            transition: '@Html.Raw(Ajax.JavaScriptStringEncode(Model.Group.TransitionEffect))',
             transition_delay: 0,
             transition_speed: @Model.Group.SlideSpeed, 
             continuous: true

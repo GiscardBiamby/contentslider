@@ -83,5 +83,20 @@ namespace ContentSlider {
             return 1;
         }
 
+        public int UpdateFrom1() {
+            SchemaBuilder.AlterTable(
+                "FeaturedItemGroupPartRecord"
+                , t => t.CreateIndex("ncix_FeaturedItemGroupPartRecord__Name", "Name")
+            );
+            SchemaBuilder.AlterTable(
+                "FeaturedItemPartRecord"
+                , t => t.CreateIndex("ncix_FeaturedItemPartRecord__GroupName", "GroupName")
+            );
+            SchemaBuilder.AlterTable(
+                "FeaturedItemSliderWidgetPartRecord"
+                , t => t.CreateIndex("ncix_FeaturedItemSliderWidgetPartRecord__GroupName", "GroupName")
+            );
+            return 2;
+        }
     }
 }
