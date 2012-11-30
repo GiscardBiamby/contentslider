@@ -46,7 +46,7 @@ namespace ContentSlider {
         }
 
         private bool FeaturedItemGroupExists() {
-            return _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup").Count() > 0;
+            return _contentManager.Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>(VersionOptions.AllVersions).Count() > 0;
         }
     }
 }

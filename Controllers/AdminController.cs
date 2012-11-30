@@ -54,7 +54,7 @@ namespace ContentSlider.Controllers {
             var list = Shape.List();
 
             var groups = _contentManager
-                .Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>("FeaturedItemGroup")
+                .Query<FeaturedItemGroupPart, FeaturedItemGroupPartRecord>(VersionOptions.AllVersions)
                 .Where<FeaturedItemGroupPartRecord>(s => s.Name != null && s.Name != "")
                 .List();
             list.AddRange(groups.Select(g => _contentManager.BuildDisplay(g, "SummaryAdmin")));
